@@ -1,0 +1,33 @@
+Download jdk: Java Development Kit
+Download and Install Android Studio
+  To set up AS we need to set up 2 Environment Variables: ANDROID_HOME: Path to the installed SDK; JAVA_HOME: Path to jdk: ProgramFiles\Java\jdk
+  Open Android Studio and open the project we are working on or create a new one.
+  Click on AVD Manager
+  Add a new device if needed or start the currently installed device
+
+Download and Install Appium
+  Start the server
+  Click on the small magnifying glass (Start Inspector Session)
+  Create JSON information which will start the app that we want to test (also scrape information from)
+  The JSON information must contain:
+    1. platformName: Android
+    2. deviceName: Android Emulator
+    3. appPackage: com.cuvora.carinfo
+    4. appWaitActivity: com.cuvora.carinfo.activity.HomePageActivity
+    5. app: C:\\Android\\com.cuvora.carinfo-5.5.4-free-www.apksum.com.apk
+  platformName is Android IOS, deviceName is the actual device or the emulator which we can see when we run adb devices, app is the location of the apk on the device which needs to be tested.
+  appPackage and appWaitActivity activity can be found using adb commands
+  Command: adb shell dumpsys window | findstr mCurrentFocus
+  The property mCurrentFocus shows the appPackage/appWaitActivity (i.e. app details) of the current app that is opened or focused on the device/ emulator.
+  Once the JSON is created we start the session and if all details are correctly entered the appium window will automatically show us the screen contents and we can see each element's identification method.
+
+To install the app we need to test:
+1. Download the apk of the app
+2. Drag and drop the apk to the emulator. This will automatically install the app onto the device.
+
+adb Commands:
+1. adb devices: Lists all the devices connected to the system including started emulators. Automatically starts the server if not already running.
+2. adb start-server: Start the server
+3. adb kill-server: Stop the server
+4. adb shell: Gives a shell prompt which has direct access to the phone like a linux prompt.
+5. adb shell send_input(values): Sends the input values to the device.
